@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from utils import connect_client, get_connected_clients, remove_connected_client
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 app.config['SECRET_KEY']=os.environ.get("SECRET_KEY", "THIS-IS-THE-SECRET")
 app.config['DEFAULT_PARSERS'] = [
