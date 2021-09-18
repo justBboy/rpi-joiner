@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 from utils import connect_client, get_connected_clients, remove_connected_client
+import os
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY']="some-secret"
+app.config['SECRET_KEY']=os.environ.get("SECRET_KEY", "THIS-IS-THE-SECRET")
 app.config['DEFAULT_PARSERS'] = [
     'flask.ext.api.parsers.JSONParser'
 ]
@@ -37,4 +38,4 @@ def get_clients():
 	return jsonify(clients)
 
 if __name__ == "__main__":
-	app.run(debug=True, host="192.168.43.14", port=4000)
+	app.run(debug=False)
